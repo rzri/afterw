@@ -3,10 +3,14 @@
 @font-face{font-family:"denimInk Fallback";src:local(Arial);ascent-override:91.35%;descent-override:20.39%;line-gap-override:0%;size-adjust:103.91%}
 @font-face{font-family:groteskMono;font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/grotesk-mono-medium.woff2)format("woff2")}
 @font-face{font-family:"groteskMono Fallback";src:local(Arial);ascent-override:65.68%;descent-override:15.21%;line-gap-override:0%;size-adjust:144.64%}
-@font-face{font-family:WenKai;font-style:normal;font-weight:300;font-display:swap;src:url(/assets/fonts/wenkai-light.woff2)format("woff2")}
-@font-face{font-family:"WenKai Fallback";src:local("PingFang SC"),local("Microsoft YaHei"),local(sans-serif)}
-/* LXGW WenKai Light: classical kaiti with fine strokes, applied to the homepage. */
-body.shoujin,body.shoujin :is(h1,h2,h3,h4,p,li,a,span,time,button,strong,em,blockquote,code,pre,div.contact-footer *){font-family:WenKai,"WenKai Fallback",denimInk,"denimInk Fallback",sans-serif}
+@font-face{font-family:MaShanZheng;font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/ma-shan-zheng.woff2)format("woff2")}
+@font-face{font-family:"MaShanZheng Fallback";src:local("Kaiti SC"),local("STKaiti"),local("KaiTi"),local(sans-serif)}
+/* Ma Shan Zheng brush kai: applied only to the hero title, poem and 山中 button
+   for a hand-written ink feel; body text stays in the readable default font. */
+body.shoujin .hero h1,
+body.shoujin .hero .sub,
+body.shoujin .discover-button{font-family:MaShanZheng,"MaShanZheng Fallback",denimInk,"denimInk Fallback",sans-serif;font-weight:400;letter-spacing:.02em}
+body.shoujin .discover-button{height:auto;padding:.75rem 2rem;text-transform:none;font-size:1.6rem;border-radius:2rem;line-height:1.2}
 :root{color:#160e20;font-synthesis:none;text-rendering:geometricprecision;--margin:calc(2.66667vw - var(--sbw) * .02667);--sbw:0px;font-family:denimInk,denimInk Fallback,sans-serif;font-size:min(calc(4.26667vw - var(--sbw) * .04267), 20.267px);background:#f2eee5;--dark-purple:#160e20;--light-purple:#cda6ff;--cream:#f2eee5;--content-surface:#f8f8f0}
 @media (width>=800px){:root{--margin:calc(1.38889vw - var(--sbw) * .01389);font-size:calc(1.11111vw - var(--sbw) * .01111)}}
 @media (width>=1280px){:root{font-size:min(calc(1.11111vw - var(--sbw) * .01111), 18.667px)}}
