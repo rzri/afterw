@@ -2,7 +2,6 @@
 title: "A Semester of Sysadmin Adventures"
 description: "Field notes from running my own servers for six months."
 pubDate: 2026-07-03
-tags: ["sysadmin", "servers", "experiment"]
 ---
 
 For six months I refused to use managed hosting and ran everything myself: a

@@ -1,25 +1,17 @@
 ---
-title: "A Taste for Slowness"
-description: "Reading, tools, and the slow build of a quieter workflow."
+title: "喜欢慢"
+description: "读书、工具，还有慢慢搭起来的安静日子。"
 pubDate: 2026-07-24
-tags: ["slow", "habits", "reading"]
 ---
 
-There's a measurable difference between being busy and being engaged. I've been
-chasing the second and it turns out to be mostly a matter of taste.
+忙碌和投入之间，是能分出高下的。我追的是后者，而它到头来多半是口味的问题。
 
-## Reading without a meter
+## 读书不计数
 
-I stopped tracking reading. No pages-per-day, no yearly count, no "books
-finished" graph. What remains is a short list of books I'm *allowed* to pick
-from and a rule that I can abandon one without guilt. The surprising result:
-more books get finished than ever did under the meter.
+我不再统计读书了。没有日读页数，没有年度本数，没有"读完"的图表。剩下的只是一小列我可以*允许*自己挑的书，还有一个规矩：放下某本不必愧疚。出人意料的收场是——读完的书比过去斤斤计较时还多。
 
-## Tools that don't interrupt
+## 不打断你的工具
 
-The tools I keep are the ones that hold a thought still: an editor, a terminal,
-a folder of files. Everything with a badge or a chime got the boot. Slowness
-turns out not to be a speed setting but a series of small removes.
+我留下的，是那些能让念头停住的东西：一个编辑器、一个终端、一文件夹的文件。凡是带角标或叮咚声的，统统请了出去。慢，原来不是一个速度档位，而是一连串小小的删除。
 
-A taste for slowness is a group project with my own attention. These are the
-field notes, and I expect to keep updating them.
+喜欢慢，是我和自己的注意力合修的一门功课。这些是田野笔记，我估摸着还会一直往上添。

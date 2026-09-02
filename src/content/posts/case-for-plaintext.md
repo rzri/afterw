@@ -1,29 +1,22 @@
 ---
-title: "The Case for Plaintext"
-description: "Formats come and go. Text outlives them all."
+title: "纯文本的理由"
+description: "格式会来来去去，文字比它们都活得久。"
 pubDate: 2026-08-21
-tags: ["plaintext", "tooling", "essay"]
 ---
 
-Every five years the productivity world rediscovers the magic of plain text, and
-every five years it forgets again. I want to make a small, permanent argument for
-it: plaintext is the only format that has *never* stopped working for me.
+每过五年，讲效率的圈子都会重新发现纯文本的好处，再过五年又把它忘掉。我只想说一个不大却很长远的道理：纯文本是唯一一种对我而言*从来*没失效过的格式。
 
-## The hard properties
+## 硬道理
 
-A system earns its place only if it survives:
+一套东西要配得上留下，得先活得久：
 
-1. **The app is abandoned.** Text doesn't care.
-2. **The sync service dies.** `git` and a folder outlive any server.
-3. **I switch operating systems.** Markdown reads the same on a phone and a
-   server.
-4. **I'm offline.** No fetch, no spinner, no "can't load."
+1. **应用被弃**。文字不在乎。
+2. **同步服务倒闭**。`git` 加一个文件夹，比任何服务器都长寿。
+3. **我换操作系统**。Markdown 在手机上和服务器上读起来一样。
+4. **我断了网**。不用拉取，不用转圈，不会"加载不了"。
 
-## The soft properties
+## 软道理
 
-Beyond durability, plaintext is *greppable*. I can throw `rg` at a whole decade
-of writing in a fraction of a second. That single capability is worth more than
-any proprietary database.
+除了耐久，纯文本还*可搜索*。我能拿 `rg` 对着十年的写作扫一个来回，只要一眨眼的工夫。这一条本事，抵得上任何一个私有的数据库。
 
-So I keep everything in `.md` files and treat any pretty interface as a layer of
-paint on top — nice to look at, trivial to scrape away. The words remain.
+所以我把一切都放在 `.md` 文件里，把任何漂亮的界面只当成上面的一层漆——好看，但也一刮就掉。句子才是底下的东西。

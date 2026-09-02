@@ -2,7 +2,6 @@
 title: "What I Learned Shipping Alone"
 description: "A solo maker's honest field notes after a year of small launches."
 pubDate: 2026-08-08
-tags: ["shipping", "solo", "experiment"]
 ---
 
 I spent a year shipping small things by myself. Not a startup, not a portfolio —

@@ -1,25 +1,17 @@
 ---
-title: "On Digital Gardens"
-description: "The garden metaphor is wearing out, but the practice isn't."
+title: "数字花园"
+description: "花园这个说法是有点旧了，但这门手艺并没过时。"
 pubDate: 2026-08-01
-tags: ["notes", "digital garden", "writing"]
 ---
 
-The metaphor of the "digital garden" — notes that grow, wither, and get pruned —
-has become the default way to describe a public thinking space. The metaphor is
-wearing out. The practice behind it still matters a lot.
+"数字花园"这个说法——笔记会长、会枯、会被修剪——已经成了描述公共思考之地时最顺手的比方。它的说法有点旧了，可它背后的手艺，仍然顶顶要紧。
 
-## What a garden gets right
+## 花园说对了的地方
 
-A garden has no publish date. It has *stages*. Some beds are seeds, some are
-flourishing, some are being torn up for something better. Applying that to notes
-removes the false binary of "draft vs. published."
+花园没有出版日期，它有*阶段*。有的田是种子，有的正繁茂，有的正要拔掉来种更好的。把它用在笔记上，就消掉"草稿与发表"这个假对错。
 
-## What it gets wrong
+## 它没说对的地方
 
-Gardens are private by default. The interesting form is slightly different: a
-garden with a fence you can hop, where people can watch you work. Not a finished
-essay, not a curated feed, but a plot of thinking with visible scaffolding.
+花园默认是私的。有意思的样式是不同的：一个栅栏可以翻过去的花园，人们能看着你做事。不是一篇写定的文章，不是一条条转来转去的动态，而是一畦带着看得见脚手架的想法。
 
-Maybe that's what this site is. Writing that's mostly finished, occasionally
-revisited, and always honest about where it stands.
+指不定这就是这个站。写到大半的、偶尔回头翻翻的、总是诚实交代自己走到哪一步的文章。

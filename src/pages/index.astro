@@ -38,13 +38,6 @@ const subtitle = "荆溪白石出，天寒红叶稀。\n山路元无雨，空翠
                 {p.data.description && (
                   <p class="post-excerpt">{p.data.description}</p>
                 )}
-                {(p.data.tags?.length ?? 0) > 0 && (
-                  <ul class="post-tags">
-                    {p.data.tags.map((t) => (
-                      <li class="tag">{t}</li>
-                    ))}
-                  </ul>
-                )}
               </a>
             </li>
           ))}

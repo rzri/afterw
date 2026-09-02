@@ -2,7 +2,6 @@
 title: "Small Tools, Tiny Projects"
 description: "A gallery of the unglamorous utilities that actually get used."
 pubDate: 2026-07-17
-tags: ["tools", "projects", "list"]
 ---
 
 Not everything needs to be a product. Most of what I build is a tool small enough

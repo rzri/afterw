@@ -25,22 +25,12 @@ const fmt = (d) =>
 ---
 
 <Base title={post.data.title}>
-  <header class="art-header" data-art-header>
-    <div class="inner">
-      <a class="art-back" href="/" aria-label="返回首页">返回</a>
-    </div>
-  </header>
+  <a class="float-back" href="/" aria-label="返回首页">返回</a>
 
   <article class="article">
     <div class="art-inner">
       <p class="article-meta">
         <time>{fmt(post.data.pubDate)}</time>
-        {(post.data.tags?.length ?? 0) > 0 && (
-          <>
-            {"  ·  "}
-            {post.data.tags.join(" · ")}
-          </>
-        )}
       </p>
       <h1>{post.data.title}</h1>
       <div class="prose">

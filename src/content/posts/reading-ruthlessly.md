@@ -1,28 +1,17 @@
 ---
-title: "Reading Ruthlessly"
-description: "Skim fast, quit faster, and let most books win."
+title: "书目要狠"
+description: "翻得飞快，放得更快，让大多数书自己赢。"
 pubDate: 2026-07-10
-tags: ["reading", "habits"]
 ---
 
-I used to treat quitting a book as a failure. Then I caught myself finishing a
-book I actively disliked purely to be "someone who finishes books," and the
-whole thing snapped into focus: the reader is served by the book, not the other
-way around.
+我从前把放下某本书当成失败。直到有一次，我逼自己读完一本并不喜欢、纯粹为了"做个读完的人"的书，事情忽然想通了：书是为读者服务的，不是反过来。
 
-## Permission to quit
+## 放下的许可
 
-The cost of a bad six hours is higher than the cost of a good six minutes spent
-choosing. Quitting early isn't defeat; it's calibration. I usually give a book
-three chapters, then ask: *does this earn the next one?* If the answer is no, it
-goes back to the shelf.
+六小时里的糟糕，比挑书花掉的六分钟贵得多。早点放手不是败下阵，是校准。我通常给一本书三章，然后问一句：*它配不配下一章？* 不配，就放回书架。
 
-## Skimming as strategy
+## 把略读当策略
 
-Most nonfiction is 20% idea and 80% runway. They don't always split along
-predictable lines, so I skim for the idea first — subheads, first and last
-paragraphs, the graphs — then return for the parts that moved me. Fast readers
-aren't fast because they read more words. They read fewer, better ones.
+大多数非虚构是两成想法、八成跑道。它们不总按可预料的地方分界，所以我先为想法而略读——小标题、首尾段、图表——再回头捡那些打动我的部分。快的人不是字读得多，是读得少而精。
 
-The result is a shelf I actually trust: every book down there earned its place
-with my own selfish reading time.
+结果是我终于有一架信得过的书架：每一本都用自己的、有点自私的读书时间挣到了位置。

@@ -1,30 +1,21 @@
 ---
-title: "Notes on Silence"
-description: "Why I keep subtracting noise from the places where I think."
+title: "关于安静"
+description: "我为什么一直从思考的地方里减去噪音。"
 pubDate: 2026-08-28
-tags: ["notes", "writing", "focus"]
 ---
 
-Most of the tools I use are loud. Notices, badges, streaks, and the quiet hum of
-"you could be doing more." I've been subtracting that hum from my own notes and
-it's the closest thing to a productivity hack that has ever worked for me.
+我用的大多数工具都很吵。通知、徽章、连续天数，还有那一句阴魂不散的"你还可以做得更多"。这些年我一直在从自己的笔记里减掉这些声音，它成了对我最管用的所谓"效率技巧"。
 
-The method is boring: plain Markdown files in a folder, synced with git, opened
-in the same editor I already use. No reward system, no streaks, no rank. Just a
-cursor and a line of thought.
+方法平淡无奇：一个文件夹里的普通 Markdown 文件，用 git 同步，在平时用的那同一个编辑器里打开。没有奖励系统，没有连续打卡，没有等级。只有光标和一缕念头。
 
-## Why silence wins
+## 为什么要安静
 
-- A blank file has no expectations baked in.
-- Version history gives me permission to write badly on a first pass.
-- Search is instant, portable, and boring in exactly the right way.
+- 一张空白文件，没有预设的期待。
+- 版本历史让我放心：第一遍写烂也没关系。
+- 检索即时、稳定、无趣——而无趣恰恰是对的。
 
-The next time a tool asks me for a notification permission, I pause. Usually the
-answer is no.
+下次有工具再向我讨要通知权限的时候，我先停一停。多数时候，答案是拒绝。
 
-## The in-between
+## 留出空白
 
-I don't mean that all tools are bad, or that calendars and task lists are noise.
-I mean the *background* noise — the parts designed to keep me attached rather
-than to help me think. Cutting those out leaves a version of work that feels
-substantially lighter.
+我不是说所有工具都不好，也不是说日历和待办是噪音。我指的是那些*背景*里的噪音——它们存在的目的不是帮我思考，而是把我留住。把那些剪掉之后，做事忽然轻了很多。

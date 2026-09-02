@@ -70,15 +70,12 @@ body.has-still .article{
 .post-row h2{letter-spacing:-.04em;line-height:1.12;margin:0;font-family:inherit;font-size:clamp(1.1rem,2vw,1.65rem);font-weight:500}
 .post-date{font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:.9rem;letter-spacing:.03em;color:color-mix(in srgb,var(--dark-purple) 55%,transparent);white-space:nowrap}
 .post-excerpt{margin:.35rem 0 0;color:color-mix(in srgb,var(--dark-purple) 75%,transparent);max-width:44rem;font-size:clamp(.85rem,1.1vw,1rem);line-height:1.4}
-.post-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem}
-.tag{font-family:groteskMono,groteskMono Fallback,monospace;font-size:.625rem;text-transform:uppercase;letter-spacing:0;color:var(--dark-purple);background:color-mix(in srgb,var(--light-purple) 32%,transparent);border-radius:999px;padding:.18rem .55rem}
 
 /* ============ Article page ============ */
-.art-header{background:var(--dark-purple);color:var(--cream);padding:1.25rem var(--margin)}
-.art-header .inner,.art-inner{width:100%;max-width:48rem;margin:0 auto}
-.art-back{color:var(--cream);text-decoration:none;font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:1.1rem;letter-spacing:.06em;display:inline-flex;align-items:center;gap:.5rem;padding-bottom:2px;position:relative}
-.art-back:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:1px;background:currentColor;opacity:.45;transform-origin:0;transition:transform .5s cubic-bezier(.16,1.08,.38,.98)}
-.art-back:hover:after{transform:scaleX(.92)}
+.art-inner{width:100%;max-width:48rem;margin:0 auto}
+/* floating back button — always reachable, no need to scroll to the top */
+.float-back{position:fixed;left:max(1rem,var(--margin));bottom:1.5rem;z-index:40;color:var(--dark-purple);background:color-mix(in srgb,var(--pastoral) 70%,var(--cream));text-decoration:none;font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:1.05rem;letter-spacing:.14em;padding:.55rem 1.4rem .5rem;border-radius:2rem;box-shadow:0 2px 12px color-mix(in srgb,var(--dark-purple) 22%,transparent);transition:background-color .3s,color .3s,transform .3s}
+.float-back:hover{background:var(--dark-purple);color:var(--cream);transform:translateY(-2px)}
 .article{background:var(--content-surface);color:var(--dark-purple);padding:clamp(4rem,9vw,7rem) var(--margin) clamp(5rem,11vw,9rem)}
 .article-meta{font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:.95rem;letter-spacing:.04em;color:color-mix(in srgb,var(--dark-purple) 60%,transparent);margin:0 0 1.5rem}
 .article h1{letter-spacing:-.04em;line-height:1.05;margin:0 0 1.5rem;font-family:inherit;font-size:clamp(2.5rem,5.5vw,4.5rem);font-weight:500}
