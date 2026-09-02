@@ -27,7 +27,7 @@ const { title, subtitle } = Astro.props;
     <h1>{title}</h1>
     {subtitle && <p class="sub">{subtitle}</p>}
     <button class="discover-button" type="button" data-play-btn>
-      <span>Watch intro</span>
+      <span>Enter</span>
     </button>
   </div>
 </div>
@@ -36,7 +36,6 @@ const { title, subtitle } = Astro.props;
   const vid = document.querySelector("[data-intro-video]");
   const btn = document.querySelector("[data-play-btn]");
   const still = document.querySelector("[data-still]");
-  const hero = document.querySelector("[data-hero]");
   const bg = document.querySelector("[data-hero-bg]");
   const header = document.querySelector("[data-site-header]");
   const body = document.body;
@@ -55,27 +54,34 @@ const { title, subtitle } = Astro.props;
   let started = false;
   let done = false;
 
+  // preload the still so the cross-fade has no white flash
+  const stillPromise = still.decode().catch(() => {});
+
   function start() {
     if (started) return;
     started = true;
     btn.remove();
     header.classList.add("light"); // over the dark video/still
-    vid.classList.add("is-playing");
+    bg.classList.add("has-video");
     body.classList.add("has-video");
-    vid.play().catch(() => {});
+    stillPromise.then(() => vid.play().catch(() => {}));
   }
 
-  // original behaviour: after the intro video finishes, show the still (avif)
-  // backdrop (desktop/mobile variant) as the fixed page background.
+  // cross-fade: fade the video out while the same-scene avif fades in beneath,
+  // so the switch feels continuous with no hard cut.
   function onEnd() {
     if (done) return;
     done = true;
     vid.pause();
-    vid.classList.remove("is-playing");
-    bg.classList.remove("has-video");
+    vid.classList.add("is-ending");
     still.classList.add("is-visible");
     body.classList.remove("has-video");
     body.classList.add("has-still");
+    // once fully faded out, stop rendering the video layer
+    setTimeout(() => {
+      bg.classList.remove("has-video");
+      bg.classList.remove("has-ending");
+    }, 1100);
   }
 
   btn.addEventListener("click", start);
