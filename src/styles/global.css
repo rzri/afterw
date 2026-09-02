@@ -9,7 +9,7 @@
    denimInk stays as a readable fallback for any glyph the subset lacks. */
 body.shoujin .hero h1,
 body.shoujin .hero .sub{font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-weight:400;letter-spacing:.02em}
-:root{color:#160e20;font-synthesis:none;text-rendering:geometricprecision;--margin:calc(2.66667vw - var(--sbw) * .02667);--sbw:0px;font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:min(calc(4.26667vw - var(--sbw) * .04267), 20.267px);background:#f2eee5;--dark-purple:#160e20;--light-purple:#cda6ff;--cream:#f2eee5;--content-surface:#f8f8f0;--pastoral:#94a36a}
+:root{color:#160e20;font-synthesis:none;text-rendering:geometricprecision;--margin:calc(2.66667vw - var(--sbw) * .02667);--sbw:0px;font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:min(calc(4.26667vw - var(--sbw) * .04267), 20.267px);background:#f2eee5;--dark-purple:#160e20;--light-purple:#cda6ff;--cream:#f2eee5;--content-surface:#f8f8f0;--pastoral:#b0bd94}
 @media (width>=800px){:root{--margin:calc(1.38889vw - var(--sbw) * .01389);font-size:calc(1.11111vw - var(--sbw) * .01111)}}
 @media (width>=1280px){:root{font-size:min(calc(1.11111vw - var(--sbw) * .01111), 18.667px)}}
 *{box-sizing:border-box}
@@ -69,13 +69,18 @@ body.has-still .article{
 .post-row{display:flex;gap:1.5rem;align-items:baseline;justify-content:space-between}
 .post-row h2{letter-spacing:-.04em;line-height:1.12;margin:0;font-family:inherit;font-size:clamp(1.1rem,2vw,1.65rem);font-weight:500}
 .post-date{font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:.9rem;letter-spacing:.03em;color:color-mix(in srgb,var(--dark-purple) 55%,transparent);white-space:nowrap}
+/* ============ Article list pagination ============ */
+.pager{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:clamp(1.5rem,3vw,2.5rem)}
+.pager-link{font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:1rem;letter-spacing:.06em;color:var(--dark-purple);text-decoration:none;padding:.4rem 1rem;border:1px solid color-mix(in srgb,var(--dark-purple) 30%,transparent);border-radius:2rem;transition:background-color .3s,color .3s}
+.pager-link:hover{background:var(--pastoral);border-color:transparent}
+.pager-nums{display:flex;gap:.4rem;align-items:center}
+.pager-num{min-width:2.1rem;height:2.1rem;display:inline-flex;align-items:center;justify-content:center;font-family:groteskMono,groteskMono Fallback,monospace;font-size:.85rem;color:var(--dark-purple);text-decoration:none;border-radius:50%;border:1px solid transparent}
+a.pager-num:hover{border-color:color-mix(in srgb,var(--dark-purple) 25%,transparent)}
+.pager-num.current{background:var(--pastoral);color:var(--dark-purple)}
 .post-excerpt{margin:.35rem 0 0;color:color-mix(in srgb,var(--dark-purple) 75%,transparent);max-width:44rem;font-size:clamp(.85rem,1.1vw,1rem);line-height:1.4}
 
 /* ============ Article page ============ */
 .art-inner{width:100%;max-width:48rem;margin:0 auto}
-/* floating back button — always reachable, no need to scroll to the top */
-.float-back{position:fixed;left:max(1rem,var(--margin));bottom:1.5rem;z-index:40;color:var(--dark-purple);background:color-mix(in srgb,var(--pastoral) 70%,var(--cream));text-decoration:none;font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:1.05rem;letter-spacing:.14em;padding:.55rem 1.4rem .5rem;border-radius:2rem;box-shadow:0 2px 12px color-mix(in srgb,var(--dark-purple) 22%,transparent);transition:background-color .3s,color .3s,transform .3s}
-.float-back:hover{background:var(--dark-purple);color:var(--cream);transform:translateY(-2px)}
 .article{background:var(--content-surface);color:var(--dark-purple);padding:clamp(4rem,9vw,7rem) var(--margin) clamp(5rem,11vw,9rem)}
 .article-meta{font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:.95rem;letter-spacing:.04em;color:color-mix(in srgb,var(--dark-purple) 60%,transparent);margin:0 0 1.5rem}
 .article h1{letter-spacing:-.04em;line-height:1.05;margin:0 0 1.5rem;font-family:inherit;font-size:clamp(2.5rem,5.5vw,4.5rem);font-weight:500}

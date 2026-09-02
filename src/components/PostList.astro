@@ -1,0 +1,57 @@
+---
+const { posts, page, pageSize } = Astro.props;
+
+const fmt = (d) =>
+  new Date(d)
+    .toLocaleDateString("zh-CN", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+    .replace(/\//g, "年")
+    .replace(/(\d+)年(\d+)月(\d+)日/, "$1年$2月$3日");
+
+const pages = Array.from({ length: Math.max(page.lastPage, 1) }, (_, i) => i + 1);
+const pageUrl = (n) => (n <= 1 ? "/" : `/${n}/`);
+---
+
+<section class="list" id="posts">
+  <div class="wrap">
+    <h1 class="list-heading">小记</h1>
+    <ol class="post-list">
+      {posts.map((p) => (
+        <li class="post-item">
+          <a href={`/posts/${p.slug}/`}>
+            <div class="post-row">
+              <h2>{p.data.title}</h2>
+              <time class="post-date">{fmt(p.data.pubDate)}</time>
+            </div>
+            {p.data.description && (
+              <p class="post-excerpt">{p.data.description}</p>
+            )}
+          </a>
+        </li>
+      ))}
+    </ol>
+
+    {page.lastPage > 1 && (
+      <nav class="pager" aria-label="文章分页">
+        {page.currentPage > 1 && (
+          <a class="pager-link" href={pageUrl(page.currentPage - 1)} rel="prev">上一页</a>
+        )}
+        <span class="pager-nums">
+          {pages.map((n) => (
+            n === page.currentPage ? (
+              <b class="pager-num current" aria-current="page">{n}</b>
+            ) : (
+              <a class="pager-num" href={pageUrl(n)}>{n}</a>
+            )
+          ))}
+        </span>
+        {page.currentPage < page.lastPage && (
+          <a class="pager-link" href={pageUrl(page.currentPage + 1)} rel="next">下一页</a>
+        )}
+      </nav>
+    )}
+  </div>
+</section>
