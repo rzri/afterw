@@ -7,12 +7,13 @@ const { title, subtitle } = Astro.props;
     <video data-intro-video muted playsinline preload="auto" webkit-playsinline></video>
   </div>
 
-  <!-- fixed backdrop revealed after the intro: the still frame (avif) -->
+  <!-- fixed backdrop revealed after the intro: the still frame (avif, with
+       jpg fallback for browsers that don't support AVIF, e.g. old Safari) -->
   <img
     class="hero-still"
     alt=""
     data-still
-    src="/assets/images/intro-desktop-response.avif"
+    src="/assets/images/intro-desktop-response.jpg"
   />
 
   <div class="hero-inner">
@@ -33,71 +34,105 @@ const { title, subtitle } = Astro.props;
   const root = document.documentElement;
 
   const desktop = window.matchMedia("(min-width: 800px)").matches;
-  const vSrc = desktop
-    ? "/assets/videos/intro-desktop.webm"
-    : "/assets/videos/intro-mobile.webm";
-  const iSrc = desktop
-    ? "/assets/images/intro-desktop-response.avif"
-    : "/assets/images/intro-mobile-response.avif";
+  const base = desktop ? "desktop" : "mobile";
+  const vWebm = `/assets/videos/intro-${base}.webm`;
+  const vMp4 = `/assets/videos/intro-${base}.mp4`;
+  const avif = `/assets/images/intro-${base}-response.avif`;
+  const jpg = `/assets/images/intro-${base}-response.jpg`;
 
-  vid.src = vSrc;
-  still.src = iSrc;
+  // Prefer the still format the browser can actually decode (old Safari has
+  // neither WebM nor AVIF; modern releases support both).
+  const supports = (fmt) => {
+    const img = new Image();
+    const probe =
+      fmt === "avif"
+        ? "AAAAIGZ0eXBhdmlmAAAAAGFtYXZkaWdyZXMwbW9vcnAA"
+        : "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigD//2Q==";
+    img.src = `data:image/${fmt};base64,${probe}`;
+    return img.decode && img.decode().then(() => true).catch(() => false);
+  };
+
+  const avifOk = supports("avif");
+
+  const webmOk = vid.canPlayType && vid.canPlayType('video/webm') !== "";
+  const mp4Ok = vid.canPlayType && vid.canPlayType('video/mp4') !== "";
+
+  // pick the best video the browser can play: webm preferred, else mp4
+  const chosen = webmOk ? vWebm : mp4Ok ? vMp4 : null;
+
+  if (chosen) vid.src = chosen;
+
+  // still image: swap in AVIF only if decodable, else keep the jpg fallback
+  avifOk.then((ok) => {
+    still.src = ok ? avif : jpg;
+  });
 
   let started = false;
   let done = false;
+  let unlocked = false;
 
-  // gate: the articles below are hidden until the intro has played. Lock
-  // scrolling (html + body) so you can't reach them from the start; unlock
-  // when it ends.
   [root, body].forEach((el) => el.classList.add("is-locked"));
 
   function unlock() {
+    if (unlocked) return;
+    unlocked = true;
     [root, body].forEach((el) => el.classList.remove("is-locked"));
   }
 
-  // preload the still so the cross-fade has no white flash
-  const stillPromise = still.decode().catch(() => {});
-
-  // starting backdrop = the video's first frame (paused at t=0), not a flat
-  // colour. Gate on loadeddata (frame decoded) and seek to 0 so the bright
-  // first frame paints; cream fallback sits underneath while it loads.
-  vid.addEventListener("loadeddata", () => {
-    vid.currentTime = 0;
-    vid.pause();
-    bg.classList.add("has-loaded");
-  });
-
-  function start() {
-    if (started) return;
-    started = true;
-    btn.remove();
-    body.classList.add("has-video");
-    stillPromise.then(() => {
+  // If the browser can't play the video at all, don't leave the page locked:
+  // reveal the still immediately and unlock.
+  if (chosen === null) {
+    unlock();
+    bg.classList.add("has-ending");
+    still.classList.add("is-visible");
+    body.classList.add("has-still");
+  } else {
+    // starting backdrop = the video's first frame (paused at t=0). Gate on
+    // loadeddata (frame decoded) and seek to 0 so the first frame paints;
+    // cream fallback sits underneath while it loads.
+    vid.addEventListener("loadeddata", () => {
       vid.currentTime = 0;
-      vid.play().catch(() => {});
+      vid.pause();
+      bg.classList.add("has-loaded");
+    });
+
+    function start() {
+      if (started) return;
+      started = true;
+      btn.remove();
+      body.classList.add("has-video");
+      avifOk.then(() => {
+        vid.currentTime = 0;
+        vid.play().catch(() => {});
+      });
+    }
+
+    function onEnd() {
+      if (done) return;
+      done = true;
+      vid.pause();
+      bg.classList.add("has-ending");
+      still.classList.add("is-visible");
+      body.classList.remove("has-video");
+      body.classList.add("has-still");
+      unlock();
+      setTimeout(() => {
+        bg.classList.remove("has-loaded");
+        bg.classList.remove("has-ending");
+      }, 1100);
+    }
+
+    btn.addEventListener("click", start);
+    vid.addEventListener("ended", onEnd);
+    // safety: if the video errors out, never leave the page locked
+    vid.addEventListener("error", () => {
+      bg.classList.add("has-ending");
+      still.classList.add("is-visible");
+      body.classList.add("has-still");
+      unlock();
     });
   }
 
-  // cross-fade: fade the video out while the same-scene avif fades in beneath,
-  // so the switch feels continuous with no hard cut.
-  function onEnd() {
-    if (done) return;
-    done = true;
-    vid.pause();
-    bg.classList.add("has-ending");
-    still.classList.add("is-visible");
-    body.classList.remove("has-video");
-    body.classList.add("has-still");
-    unlock();
-    // once fully faded out, stop rendering the video layer
-    setTimeout(() => {
-      bg.classList.remove("has-loaded");
-      bg.classList.remove("has-ending");
-    }, 1100);
-  }
-
-  btn.addEventListener("click", start);
-  vid.addEventListener("ended", onEnd);
-  // safety: if the video can't play, don't leave the page locked
-  vid.addEventListener("error", unlock);
+  // last-resort: if the video stalls/hangs for whatever reason, unlock anyway
+  setTimeout(unlock, 20000);
 </script>
