@@ -8,10 +8,8 @@
 /* 鸿雷行书简体 applied site-wide for a hand-written running-script (行楷) feel;
    denimInk stays as a readable fallback for any glyph the subset lacks. */
 body.shoujin .hero h1,
-body.shoujin .hero .sub,
-body.shoujin .discover-button{font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-weight:400;letter-spacing:.02em}
-body.shoujin .discover-button{height:auto;padding:.75rem 2rem;text-transform:none;font-size:1.6rem;border-radius:2rem;line-height:1.2}
-:root{color:#160e20;font-synthesis:none;text-rendering:geometricprecision;--margin:calc(2.66667vw - var(--sbw) * .02667);--sbw:0px;font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:min(calc(4.26667vw - var(--sbw) * .04267), 20.267px);background:#f2eee5;--dark-purple:#160e20;--light-purple:#cda6ff;--cream:#f2eee5;--content-surface:#f8f8f0}
+body.shoujin .hero .sub{font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-weight:400;letter-spacing:.02em}
+:root{color:#160e20;font-synthesis:none;text-rendering:geometricprecision;--margin:calc(2.66667vw - var(--sbw) * .02667);--sbw:0px;font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:min(calc(4.26667vw - var(--sbw) * .04267), 20.267px);background:#f2eee5;--dark-purple:#160e20;--light-purple:#cda6ff;--cream:#f2eee5;--content-surface:#f8f8f0;--pastoral:#94a36a}
 @media (width>=800px){:root{--margin:calc(1.38889vw - var(--sbw) * .01389);font-size:calc(1.11111vw - var(--sbw) * .01111)}}
 @media (width>=1280px){:root{font-size:min(calc(1.11111vw - var(--sbw) * .01111), 18.667px)}}
 *{box-sizing:border-box}
@@ -48,7 +46,7 @@ html.is-locked,body.is-locked{overflow:hidden;height:100svh}
 .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:3.75rem;padding:0 1rem}
 .hero h1{color:var(--dark-purple);letter-spacing:-.03em;text-align:center;margin:0;font-family:inherit;font-size:5.3125rem;font-weight:500;line-height:1.1;max-width:16ch}
 .hero .sub{color:color-mix(in srgb,var(--dark-purple) 75%,transparent);letter-spacing:-.01em;margin:-2.5rem 0 0;font-size:1.15rem;line-height:1.6;max-width:34rem;white-space:pre-line}
-.discover-button{appearance:none;background:var(--light-purple);color:var(--dark-purple);cursor:pointer;letter-spacing:-.02em;text-transform:uppercase;border:0;border-radius:1.875rem;justify-content:center;align-items:center;height:2.75rem;padding:0 1.5rem;font-family:groteskMono,groteskMono Fallback,monospace;font-size:.75rem;font-weight:500;line-height:1;text-decoration:none;transition:background-color .4s cubic-bezier(.16,1.08,.38,.98),color .4s cubic-bezier(.16,1.08,.38,.98),opacity .3s;display:inline-flex}
+.discover-button{appearance:none;background:var(--pastoral);color:var(--dark-purple);cursor:pointer;letter-spacing:.08em;border:0;border-radius:2.25rem;justify-content:center;align-items:center;height:auto;padding:.85rem 2.4rem;font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:1.6rem;font-weight:400;line-height:1.2;text-decoration:none;text-shadow:0 1px 1px color-mix(in srgb,var(--cream) 35%,transparent);transition:background-color .4s cubic-bezier(.16,1.08,.38,.98),color .4s cubic-bezier(.16,1.08,.38,.98),opacity .3s;display:inline-flex}
 .discover-button span{padding-top:1px}
 .discover-button:hover:not(:disabled){background:var(--dark-purple);color:var(--cream)}
 .discover-button:focus-visible{outline-offset:4px;outline:2px solid #000}
@@ -78,9 +76,9 @@ body.has-still .article{
 /* ============ Article page ============ */
 .art-header{background:var(--dark-purple);color:var(--cream);padding:1.25rem var(--margin)}
 .art-header .inner,.art-inner{width:100%;max-width:48rem;margin:0 auto}
-.art-back{color:var(--cream);text-decoration:none;font-family:groteskMono,groteskMono Fallback,monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:-.01em;display:inline-block;padding-bottom:1px;position:relative}
-.art-back:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:0;transition:transform .5s cubic-bezier(.16,1.08,.38,.98)}
-.art-back:hover:after{transform:scaleX(1)}
+.art-back{color:var(--cream);text-decoration:none;font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:1.1rem;letter-spacing:.06em;display:inline-flex;align-items:center;gap:.5rem;padding-bottom:2px;position:relative}
+.art-back:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:1px;background:currentColor;opacity:.45;transform-origin:0;transition:transform .5s cubic-bezier(.16,1.08,.38,.98)}
+.art-back:hover:after{transform:scaleX(.92)}
 .article{background:var(--content-surface);color:var(--dark-purple);padding:clamp(4rem,9vw,7rem) var(--margin) clamp(5rem,11vw,9rem)}
 .article-meta{font-family:groteskMono,groteskMono Fallback,monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:-.01em;color:color-mix(in srgb,var(--dark-purple) 55%,transparent);margin:0 0 1.5rem}
 .article h1{letter-spacing:-.04em;line-height:1.05;margin:0 0 1.5rem;font-family:inherit;font-size:clamp(2.5rem,5.5vw,4.5rem);font-weight:500}
