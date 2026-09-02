@@ -16,28 +16,25 @@ const fmt = (d) =>
 ---
 
 <Base>
-  <Hero
-    title="innatus"
-    subtitle="notes, ideas & experiments worth returning to"
-  />
+  <Hero title="innatus" subtitle="notes, ideas & experiments worth returning to" />
 
-  <main id="main">
-    <section class="list" id="posts">
+  <main class="sbw-body">
+    <section class="list first" id="posts">
       <div class="wrap">
         <h1 class="list-heading">Writing</h1>
         <ol class="post-list">
           {allPosts.map((p) => (
-            <li>
+            <li class="post-item">
               <a href={`/posts/${p.slug}/`}>
                 <div class="post-row">
                   <h2>{p.data.title}</h2>
-                  <time class="date">{fmt(p.data.pubDate)}</time>
+                  <time class="post-date">{fmt(p.data.pubDate)}</time>
                 </div>
                 {p.data.description && (
-                  <p class="excerpt">{p.data.description}</p>
+                  <p class="post-excerpt">{p.data.description}</p>
                 )}
                 {(p.data.tags?.length ?? 0) > 0 && (
-                  <ul class="tags">
+                  <ul class="post-tags">
                     {p.data.tags.map((t) => (
                       <li class="tag">{t}</li>
                     ))}
@@ -50,40 +47,35 @@ const fmt = (d) =>
       </div>
     </section>
 
-    <section class="list" id="about" style="padding-top:0">
+    <section class="list" id="about">
       <div class="wrap">
         <h1 class="list-heading">About</h1>
-        <div class="prose">
+        <div class="prose" style="max-width:44rem">
           <p>
             innatus is a personal blog for notes, projects, and small
-            experiments. Every entry here is a thing I found worth returning
-            to.
+            experiments. Every entry here is a thing worth returning to.
           </p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="foot-grid">
-        <div class="brand">innatus</div>
-        <div class="col">
+  <footer class="contact-footer">
+    <div class="foot-grid">
+      <div class="foot-brand">innatus</div>
+      <div class="foot-cols">
+        <div class="foot-col">
           <h4>Links</h4>
           <a href="https://github.com/rzri" target="_blank" rel="noopener">
             GitHub
           </a>
           <a href="mailto:haenlau.me@gmail.com">Email</a>
         </div>
-        <div class="col">
-          <h4>Colophon</h4>
-          <span>Astro · dark purple &amp; cream</span>
-        </div>
       </div>
-      <div class="foot-meta">
-        <span>© {new Date().getFullYear()} innatus</span>
-        <span>MADE BY rzri</span>
-      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© {new Date().getFullYear()} innatus</span>
+      <span>MADE BY rzri</span>
     </div>
   </footer>
 </Base>

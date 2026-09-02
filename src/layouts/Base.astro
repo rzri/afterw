@@ -2,6 +2,7 @@
 import "../styles/global.css";
 
 const { title = "innatus" } = Astro.props;
+const pageTitle = title === "innatus" ? "innatus" : `${title} · innatus`;
 ---
 
 <!doctype html>
@@ -10,14 +11,22 @@ const { title = "innatus" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content="Astro" />
-    <meta
-      name="description"
-      content="innatus — a personal blog. Dark purple and cream, with a cinematic WebM introduction."
-    />
+    <meta name="description" content="innatus — a personal blog. Dark purple and cream, with a cinematic WebM introduction." />
     <meta name="robots" content="index, follow" />
-    <title>{title} · innatus</title>
+    <link rel="icon" type="image/png" href="/assets/images/icon-128x128.png" />
+    <title>{pageTitle}</title>
   </head>
   <body>
     <slot />
+    <script is:inline>
+      // mimic original --sbw scrollbar compensation
+      const update = () =>
+        document.documentElement.style.setProperty(
+          "--sbw",
+          `${window.innerWidth - document.documentElement.clientWidth}px`
+        );
+      update();
+      window.addEventListener("resize", update);
+    </script>
   </body>
 </html>

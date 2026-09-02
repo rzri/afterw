@@ -22,14 +22,14 @@ const fmt = (d) =>
 ---
 
 <Base title={post.data.title}>
-  <header class="art-header on-dark">
-    <div class="wrap">
-      <a class="back" href="/">← innatus</a>
+  <header class="art-header" data-art-header>
+    <div class="inner">
+      <a class="art-back" href="/">← innatus</a>
     </div>
   </header>
 
   <article class="article">
-    <div class="wrap">
+    <div class="art-inner">
       <p class="article-meta">
         <time>{fmt(post.data.pubDate)}</time>
         {(post.data.tags?.length ?? 0) > 0 && (
@@ -46,11 +46,11 @@ const fmt = (d) =>
     </div>
   </article>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="foot-grid">
-        <div class="brand">innatus</div>
-        <div class="col">
+  <footer class="contact-footer">
+    <div class="foot-grid">
+      <div class="foot-brand">innatus</div>
+      <div class="foot-cols">
+        <div class="foot-col">
           <h4>Links</h4>
           <a href="https://github.com/rzri" target="_blank" rel="noopener">
             GitHub
@@ -58,10 +58,10 @@ const fmt = (d) =>
           <a href="mailto:haenlau.me@gmail.com">Email</a>
         </div>
       </div>
-      <div class="foot-meta">
-        <span>© {new Date().getFullYear()} innatus</span>
-        <span>MADE BY rzri</span>
-      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© {new Date().getFullYear()} innatus</span>
+      <span>MADE BY rzri</span>
     </div>
   </footer>
 </Base>
