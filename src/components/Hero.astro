@@ -15,10 +15,6 @@ const { title, subtitle } = Astro.props;
     src="/assets/images/intro-desktop-response.avif"
   />
 
-  <header class="site-header on-cream" data-site-header>
-    <a class="nav-logo" href="/">{title}</a>
-  </header>
-
   <div class="hero-inner">
     <h1>{title}</h1>
     {subtitle && <p class="sub">{subtitle}</p>}
@@ -33,7 +29,6 @@ const { title, subtitle } = Astro.props;
   const btn = document.querySelector("[data-play-btn]");
   const still = document.querySelector("[data-still]");
   const bg = document.querySelector("[data-hero-bg]");
-  const header = document.querySelector("[data-site-header]");
   const body = document.body;
   const root = document.documentElement;
 
@@ -76,7 +71,6 @@ const { title, subtitle } = Astro.props;
     if (started) return;
     started = true;
     btn.remove();
-    header.classList.add("light"); // over the darker video scene
     body.classList.add("has-video");
     stillPromise.then(() => {
       vid.currentTime = 0;

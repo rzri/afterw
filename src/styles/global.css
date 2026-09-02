@@ -3,6 +3,10 @@
 @font-face{font-family:"denimInk Fallback";src:local(Arial);ascent-override:91.35%;descent-override:20.39%;line-gap-override:0%;size-adjust:103.91%}
 @font-face{font-family:groteskMono;font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/grotesk-mono-medium.woff2)format("woff2")}
 @font-face{font-family:"groteskMono Fallback";src:local(Arial);ascent-override:65.68%;descent-override:15.21%;line-gap-override:0%;size-adjust:144.64%}
+@font-face{font-family:ShouJin;font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/shoujin.woff2)format("woff2")}
+@font-face{font-family:"ShouJin Fallback";src:local("PingFang SC")}
+/* 瘦金体 look applied to the homepage: thin, sharp lines for classical text. */
+body.shoujin,body.shoujin :is(h1,h2,h3,h4,p,li,a,span,time,button,strong,em,blockquote,code,pre,div.contact-footer *){font-family:ShouJin,"ShouJin Fallback",denimInk,"denimInk Fallback",sans-serif}
 :root{color:#160e20;font-synthesis:none;text-rendering:geometricprecision;--margin:calc(2.66667vw - var(--sbw) * .02667);--sbw:0px;font-family:denimInk,denimInk Fallback,sans-serif;font-size:min(calc(4.26667vw - var(--sbw) * .04267), 20.267px);background:#f2eee5;--dark-purple:#160e20;--light-purple:#cda6ff;--cream:#f2eee5;--content-surface:#f8f8f0}
 @media (width>=800px){:root{--margin:calc(1.38889vw - var(--sbw) * .01389);font-size:calc(1.11111vw - var(--sbw) * .01111)}}
 @media (width>=1280px){:root{font-size:min(calc(1.11111vw - var(--sbw) * .01111), 18.667px)}}
