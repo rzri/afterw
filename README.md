@@ -1,8 +1,10 @@
 # innatus
 
 A personal blog — dark purple (`#160e20`) and cream (`#f2eee5`), with a cinematic
-**WebM** intro on the homepage that plays on click and leaves its final frame as
-the page backdrop.
+**WebM** intro on the homepage. The intro plays on click; once it finishes the
+page switches to a fixed still **avif** backdrop
+(`intro-desktop-response.avif` / `intro-mobile-response.avif`) that the content
+scrolls over — mirroring the original site's discover-scene behaviour.
 
 Built with **Astro** (static output) + Markdown content collections.
 
@@ -49,7 +51,7 @@ src/
     config.ts        # content-collection schema
     posts/           # your Markdown articles
   components/
-    Hero.astro       # WebM intro + play-on-click / last-frame backdrop
+    Hero.astro       # WebM intro (play on click) -> fixed avif backdrop on end
   layouts/
     Base.astro       # base HTML shell
   pages/
@@ -59,6 +61,7 @@ src/
     global.css       # theme tokens + typography
 public/
   assets/videos/     # intro-desktop.webm, intro-mobile.webm
+  assets/images/     # intro-desktop-response.avif, intro-mobile-response.avif
 ```
 
 ## Deploy: Tencent EdgeOne (via GitHub)

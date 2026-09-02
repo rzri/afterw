@@ -5,10 +5,17 @@ const { title, subtitle } = Astro.props;
 <div class="hero" data-hero>
   <div class="hero-bg" aria-hidden="true" data-hero-bg>
     <video data-intro-video muted playsinline preload="auto" webkit-playsinline></video>
-    <div class="hero-scanlines"></div>
   </div>
 
-  <header class="site-header" data-site-header>
+  <!-- fixed backdrop revealed after the intro: the still frame (avif) -->
+  <img
+    class="hero-still"
+    alt=""
+    data-still
+    src="/assets/images/intro-desktop-response.avif"
+  />
+
+  <header class="site-header on-cream" data-site-header>
     <a class="nav-logo" href="/">{title}</a>
     <nav class="nav-actions" aria-label="Primary">
       <a href="/#posts">Articles</a>
@@ -28,41 +35,49 @@ const { title, subtitle } = Astro.props;
 <script>
   const vid = document.querySelector("[data-intro-video]");
   const btn = document.querySelector("[data-play-btn]");
+  const still = document.querySelector("[data-still]");
   const hero = document.querySelector("[data-hero]");
   const bg = document.querySelector("[data-hero-bg]");
   const header = document.querySelector("[data-site-header]");
+  const body = document.body;
 
-  const desktop = window.matchMedia("(min-width: 800px)");
-  const isMobile = !desktop.matches;
-  vid.src = desktop.matches
+  const desktop = window.matchMedia("(min-width: 800px)").matches;
+  const vSrc = desktop
     ? "/assets/videos/intro-desktop.webm"
     : "/assets/videos/intro-mobile.webm";
+  const iSrc = desktop
+    ? "/assets/images/intro-desktop-response.avif"
+    : "/assets/images/intro-mobile-response.avif";
 
-  let played = false;
+  vid.src = vSrc;
+  still.src = iSrc;
+
+  let started = false;
+  let done = false;
 
   function start() {
-    if (played) {
-      // already played once -> keep its last frame as the fixed background
-      return;
-    }
-    played = true;
-    // header sits over the video -> flip to light color for legibility
-    header.classList.add("light");
-    btn.style.display = "none";
-    bg.classList.add("is-fixed");
+    if (started) return;
+    started = true;
+    btn.remove();
+    header.classList.add("light"); // over the dark video/still
     vid.classList.add("is-playing");
+    body.classList.add("has-video");
     vid.play().catch(() => {});
   }
 
-  btn.addEventListener("click", start);
-
-  // pause on the final frame -> it becomes the blog backdrop while scrolling
-  vid.addEventListener("ended", () => {
+  // original behaviour: after the intro video finishes, show the still (avif)
+  // backdrop (desktop/mobile variant) as the fixed page background.
+  function onEnd() {
+    if (done) return;
+    done = true;
     vid.pause();
-  });
-
-  // catch a light swipe: also let the intro play once scrolled is not needed
-  if (isMobile) {
-    header.classList.remove("light");
+    vid.classList.remove("is-playing");
+    bg.classList.remove("has-video");
+    still.classList.add("is-visible");
+    body.classList.remove("has-video");
+    body.classList.add("has-still");
   }
+
+  btn.addEventListener("click", start);
+  vid.addEventListener("ended", onEnd);
 </script>
