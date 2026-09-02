@@ -57,14 +57,25 @@ const { title, subtitle } = Astro.props;
   // preload the still so the cross-fade has no white flash
   const stillPromise = still.decode().catch(() => {});
 
+  // starting backdrop = the video's first frame (paused at t=0), not a flat
+  // colour. Gate on loadeddata (frame decoded) and seek to 0 so the bright
+  // first frame paints; cream fallback sits underneath while it loads.
+  vid.addEventListener("loadeddata", () => {
+    vid.currentTime = 0;
+    vid.pause();
+    bg.classList.add("has-loaded");
+  });
+
   function start() {
     if (started) return;
     started = true;
     btn.remove();
-    header.classList.add("light"); // over the dark video/still
-    bg.classList.add("has-video");
+    header.classList.add("light"); // over the darker video scene
     body.classList.add("has-video");
-    stillPromise.then(() => vid.play().catch(() => {}));
+    stillPromise.then(() => {
+      vid.currentTime = 0;
+      vid.play().catch(() => {});
+    });
   }
 
   // cross-fade: fade the video out while the same-scene avif fades in beneath,
@@ -73,13 +84,13 @@ const { title, subtitle } = Astro.props;
     if (done) return;
     done = true;
     vid.pause();
-    vid.classList.add("is-ending");
+    bg.classList.add("has-ending");
     still.classList.add("is-visible");
     body.classList.remove("has-video");
     body.classList.add("has-still");
     // once fully faded out, stop rendering the video layer
     setTimeout(() => {
-      bg.classList.remove("has-video");
+      bg.classList.remove("has-loaded");
       bg.classList.remove("has-ending");
     }, 1100);
   }
