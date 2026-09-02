@@ -14,17 +14,20 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 
 const fmt = (d) =>
-  new Date(d).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  new Date(d)
+    .toLocaleDateString("zh-CN", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+    .replace(/\//g, "年")
+    .replace(/(\d+)年(\d+)月(\d+)日/, "$1年$2月$3日");
 ---
 
 <Base title={post.data.title}>
   <header class="art-header" data-art-header>
     <div class="inner">
-      <a class="art-back" href="/" aria-label="返回首页"><span class="art-back-arrow" aria-hidden="true">‹</span> 本心自昭</a>
+      <a class="art-back" href="/" aria-label="返回首页">返回</a>
     </div>
   </header>
 
