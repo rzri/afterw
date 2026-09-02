@@ -1,0 +1,99 @@
+---
+const { title, subtitle } = Astro.props;
+const isDesktop = true; // replaced by client detection
+---
+
+<div class="hero" data-hero>
+  <div class="hero-bg" aria-hidden="true">
+    <video
+      data-intro-video
+      muted
+      playsinline
+      preload="auto"
+      webkit-playsinline
+    ></video>
+    <div class="hero-scanlines"></div>
+  </div>
+
+  <header class="site-header on-dark" data-site-header>
+    <a class="brand" href="/">innatus</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/#posts">Articles</a>
+      <a href="/#about">About</a>
+    </nav>
+  </header>
+
+  <div class="hero-inner" data-hero-inner>
+    <h1>{title}</h1>
+    {subtitle && <p class="sub">{subtitle}</p>}
+    <button class="hero-btn" type="button" data-play-btn>
+      <span data-play-label>Watch intro</span>
+    </button>
+  </div>
+</div>
+
+<!-- Video source selection + play/end logic -->
+<script>
+  const vid = document.querySelector("[data-intro-video]");
+  const btn = document.querySelector("[data-play-btn]");
+  const hero = document.querySelector("[data-hero]");
+  const header = document.querySelector("[data-site-header]");
+
+  const desktop = window.matchMedia("(min-width: 800px)");
+  vid.src = desktop.matches
+    ? "/assets/videos/intro-desktop.webm"
+    : "/assets/videos/intro-mobile.webm";
+
+  let played = false;
+
+  function start() {
+    if (played) {
+      // already played once: keep it as backdrop, let the page scroll
+      hero.classList.add("is-cleared");
+      return;
+    }
+    played = true;
+    btn.setAttribute("aria-hidden", "true");
+    carryIntoViewport();
+    vid.classList.add("is-playing");
+    vid.play().catch(() => {});
+  }
+
+  // Move the video to a fixed full-viewport backdrop after it plays,
+  // so its final frame becomes the page background while scrolling.
+  function carryIntoViewport() {
+    const bg = document.querySelector(".hero-bg");
+    bg.classList.add("is-fixed");
+  }
+
+  btn.addEventListener("click", start);
+
+  // reaching the end: pause on the last frame (stays as backdrop)
+  vid.addEventListener("ended", () => {
+    vid.pause();
+  });
+
+  vid.addEventListener("loadeddata", () => {
+    // ensure the very first frame shows only after user interacts visually;
+    // we keep video hidden until play.
+  });
+</script>
+
+<style>
+  .hero-bg.is-fixed {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+  }
+  .hero.is-cleared {
+    min-height: 100svh;
+  }
+  .hero-bg .hero-scanlines {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      color-mix(in srgb, var(--dark-purple) 35%, transparent),
+      color-mix(in srgb, var(--dark-purple) 75%, transparent)
+    );
+  }
+</style>

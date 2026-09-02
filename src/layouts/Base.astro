@@ -1,0 +1,23 @@
+---
+import "../styles/global.css";
+
+const { title = "innatus" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Astro" />
+    <meta
+      name="description"
+      content="innatus — a personal blog. Dark purple and cream, with a cinematic WebM introduction."
+    />
+    <meta name="robots" content="index, follow" />
+    <title>{title} · innatus</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
