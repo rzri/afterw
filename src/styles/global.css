@@ -14,6 +14,9 @@ button,a{-webkit-tap-highlight-color:transparent}
 button{font:inherit}
 a{color:inherit}
 img,video{max-width:100%;display:block}
+/* gate: before the intro has played, keep the visitor on the hero so the
+   articles below aren't reachable until they press Enter and it finishes. */
+html.is-locked,body.is-locked{overflow:hidden;height:100svh}
 .sbw-body{background:var(--content-surface);color:var(--dark-purple);min-height:100svh;position:relative;z-index:1;overflow-x:clip}
 
 /* ============ Site header (port of original .site-header/.site-nav) ============ */

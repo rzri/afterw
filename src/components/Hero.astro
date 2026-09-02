@@ -39,6 +39,7 @@ const { title, subtitle } = Astro.props;
   const bg = document.querySelector("[data-hero-bg]");
   const header = document.querySelector("[data-site-header]");
   const body = document.body;
+  const root = document.documentElement;
 
   const desktop = window.matchMedia("(min-width: 800px)").matches;
   const vSrc = desktop
@@ -53,6 +54,15 @@ const { title, subtitle } = Astro.props;
 
   let started = false;
   let done = false;
+
+  // gate: the articles below are hidden until the intro has played. Lock
+  // scrolling (html + body) so you can't reach them from the start; unlock
+  // when it ends.
+  [root, body].forEach((el) => el.classList.add("is-locked"));
+
+  function unlock() {
+    [root, body].forEach((el) => el.classList.remove("is-locked"));
+  }
 
   // preload the still so the cross-fade has no white flash
   const stillPromise = still.decode().catch(() => {});
@@ -88,6 +98,7 @@ const { title, subtitle } = Astro.props;
     still.classList.add("is-visible");
     body.classList.remove("has-video");
     body.classList.add("has-still");
+    unlock();
     // once fully faded out, stop rendering the video layer
     setTimeout(() => {
       bg.classList.remove("has-loaded");
@@ -97,4 +108,6 @@ const { title, subtitle } = Astro.props;
 
   btn.addEventListener("click", start);
   vid.addEventListener("ended", onEnd);
+  // safety: if the video can't play, don't leave the page locked
+  vid.addEventListener("error", unlock);
 </script>
