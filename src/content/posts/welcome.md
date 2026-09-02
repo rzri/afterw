@@ -1,11 +1,11 @@
 ---
-title: "Welcome to innatus"
-description: "A first placeholder post for the innatus blog."
+title: "Welcome to 本心自昭"
+description: "A first placeholder post for the 本心自昭 blog."
 pubDate: 2026-09-02
 tags: ["meta", "introduction"]
 ---
 
-Welcome to **innatus** — a personal space for writing.
+Welcome to **本心自昭** — a personal space for writing.
 
 This is a placeholder post so you can see how the list and detail pages look.
 

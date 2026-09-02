@@ -13,10 +13,12 @@ const fmt = (d) =>
     month: "short",
     day: "numeric",
   });
+
+const subtitle = "荆溪白石出，天寒红叶稀。\n山路元无雨，空翠湿人衣。";
 ---
 
 <Base>
-  <Hero title="innatus" subtitle="notes, ideas & experiments worth returning to" />
+  <Hero title="本心自昭" subtitle={subtitle} />
 
   <main class="sbw-body">
     <section class="list first" id="posts">
@@ -52,7 +54,7 @@ const fmt = (d) =>
         <h1 class="list-heading">About</h1>
         <div class="prose" style="max-width:44rem">
           <p>
-            innatus is a personal blog for notes, projects, and small
+            本心自昭 is a personal blog for notes, projects, and small
             experiments. Every entry here is a thing worth returning to.
           </p>
         </div>
@@ -62,7 +64,7 @@ const fmt = (d) =>
 
   <footer class="contact-footer">
     <div class="foot-grid">
-      <div class="foot-brand">innatus</div>
+      <div class="foot-brand">本心自昭</div>
       <div class="foot-cols">
         <div class="foot-col">
           <h4>Links</h4>
@@ -74,7 +76,7 @@ const fmt = (d) =>
       </div>
     </div>
     <div class="footer-meta">
-      <span>© {new Date().getFullYear()} innatus</span>
+      <span>© {new Date().getFullYear()} 本心自昭</span>
       <span>MADE BY rzri</span>
     </div>
   </footer>

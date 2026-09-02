@@ -17,17 +17,13 @@ const { title, subtitle } = Astro.props;
 
   <header class="site-header on-cream" data-site-header>
     <a class="nav-logo" href="/">{title}</a>
-    <nav class="nav-actions" aria-label="Primary">
-      <a href="/#posts">Articles</a>
-      <a href="/#about">About</a>
-    </nav>
   </header>
 
   <div class="hero-inner">
     <h1>{title}</h1>
     {subtitle && <p class="sub">{subtitle}</p>}
     <button class="discover-button" type="button" data-play-btn>
-      <span>Enter</span>
+      <span>山中</span>
     </button>
   </div>
 </div>
