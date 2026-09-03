@@ -71,30 +71,54 @@ const { title, subtitle } = Astro.props;
   let done = false;
   let unlocked = false;
 
-  [root, body].forEach((el) => el.classList.add("is-locked"));
-
   function unlock() {
     if (unlocked) return;
     unlocked = true;
     [root, body].forEach((el) => el.classList.remove("is-locked"));
   }
 
-  // If the browser can't play the video at all, don't leave the page locked:
-  // reveal the still immediately and unlock.
-  if (chosen === null) {
-    unlock();
+  // Remember once the intro has been watched, and skip it on later visits
+  // (e.g. returning to the homepage from an article) so the opening
+  // cinematic only plays once ever per browser.
+  const skipIntro = () => {
+    try {
+      return localStorage.getItem("intro_seen") === "1";
+    } catch (_e) {
+      return false;
+    }
+  };
+  const markSeen = () => {
+    try {
+      localStorage.setItem("intro_seen", "1");
+    } catch (_e) {}
+  };
+
+  // Skip the cinematic entirely if already seen: show the still directly,
+  // hide the 山中 button and never lock scroll.
+  if (skipIntro()) {
+    btn.remove();
     bg.classList.add("has-ending");
     still.classList.add("is-visible");
     body.classList.add("has-still");
   } else {
-    // starting backdrop = the video's first frame (paused at t=0). Gate on
-    // loadeddata (frame decoded) and seek to 0 so the first frame paints;
-    // cream fallback sits underneath while it loads.
-    vid.addEventListener("loadeddata", () => {
-      vid.currentTime = 0;
-      vid.pause();
-      bg.classList.add("has-loaded");
-    });
+    [root, body].forEach((el) => el.classList.add("is-locked"));
+
+    // If the browser can't play the video at all, don't leave the page
+    // locked: reveal the still immediately and unlock.
+    if (chosen === null) {
+      unlock();
+      bg.classList.add("has-ending");
+      still.classList.add("is-visible");
+      body.classList.add("has-still");
+    } else {
+      // starting backdrop = the video's first frame (paused at t=0). Gate on
+      // loadeddata (frame decoded) and seek to 0 so the first frame paints;
+      // cream fallback sits underneath while it loads.
+      vid.addEventListener("loadeddata", () => {
+        vid.currentTime = 0;
+        vid.pause();
+        bg.classList.add("has-loaded");
+      });
 
     function start() {
       if (started) return;
@@ -111,6 +135,7 @@ const { title, subtitle } = Astro.props;
       if (done) return;
       done = true;
       vid.pause();
+      markSeen();
       bg.classList.add("has-ending");
       still.classList.add("is-visible");
       body.classList.remove("has-video");
@@ -131,8 +156,9 @@ const { title, subtitle } = Astro.props;
       body.classList.add("has-still");
       unlock();
     });
-  }
+    }
 
-  // last-resort: if the video stalls/hangs for whatever reason, unlock anyway
-  setTimeout(unlock, 20000);
+    // last-resort: if the video stalls/hangs for whatever reason, unlock anyway
+    setTimeout(unlock, 20000);
+  }
 </script>
