@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
+import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
 import PostList from "../components/PostList.astro";
 
@@ -36,22 +37,5 @@ const subtitle = "荆溪白石出，天寒红叶稀。\n山路元无雨，空翠
     )}
   </main>
 
-  <footer class="contact-footer">
-    <div class="foot-grid">
-      <div class="foot-brand">本心自昭</div>
-      <div class="foot-cols">
-        <div class="foot-col">
-          <h4>Links</h4>
-          <a href="https://github.com/rzri" target="_blank" rel="noopener">
-            GitHub
-          </a>
-          <a href="mailto:haenlau.me@gmail.com">Email</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-meta">
-      <span>© {new Date().getFullYear()} 本心自昭</span>
-      <span>MADE BY rzri</span>
-    </div>
-  </footer>
+  <Footer />
 </Base>

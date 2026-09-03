@@ -54,11 +54,17 @@ const { title, subtitle } = Astro.props;
 
   const avifOk = supports("avif");
 
-  const webmOk = vid.canPlayType && vid.canPlayType('video/webm') !== "";
-  const mp4Ok = vid.canPlayType && vid.canPlayType('video/mp4') !== "";
+  const webmOk = vid.canPlayType && vid.canPlayType("video/webm") !== "";
+  const mp4Ok = vid.canPlayType && vid.canPlayType("video/mp4") !== "";
+  const webkitBrowser = /Safari|iPhone|iPad|iPod/.test(navigator.userAgent)
+    && !/Chrome|CriOS|Edg|Android/.test(navigator.userAgent);
 
-  // pick the best video the browser can play: webm preferred, else mp4
-  const chosen = webmOk ? vWebm : mp4Ok ? vMp4 : null;
+  // Safari is most reliable with the H.264 MP4 export. Chromium prefers the
+  // smaller WebM, with MP4 retained as a runtime fallback if decoding fails.
+  const chosen = webkitBrowser
+    ? (mp4Ok ? vMp4 : webmOk ? vWebm : null)
+    : (webmOk ? vWebm : mp4Ok ? vMp4 : null);
+  let fallbackAttempted = false;
 
   if (chosen) vid.src = chosen;
 
@@ -115,6 +121,7 @@ const { title, subtitle } = Astro.props;
       // loadeddata (frame decoded) and seek to 0 so the first frame paints;
       // cream fallback sits underneath while it loads.
       vid.addEventListener("loadeddata", () => {
+        if (started) return;
         vid.currentTime = 0;
         vid.pause();
         bg.classList.add("has-loaded");
@@ -125,10 +132,13 @@ const { title, subtitle } = Astro.props;
       started = true;
       btn.remove();
       body.classList.add("has-video");
-      avifOk.then(() => {
-        vid.currentTime = 0;
-        vid.play().catch(() => {});
-      });
+      // Keep play() inside the click handler. Safari rejects a play request
+      // moved into a promise callback because it no longer has user intent.
+      vid.currentTime = 0;
+      const playRequest = vid.play();
+      if (playRequest && typeof playRequest.catch === "function") {
+        playRequest.catch(onEnd);
+      }
     }
 
     function onEnd() {
@@ -151,10 +161,14 @@ const { title, subtitle } = Astro.props;
     vid.addEventListener("ended", onEnd);
     // safety: if the video errors out, never leave the page locked
     vid.addEventListener("error", () => {
-      bg.classList.add("has-ending");
-      still.classList.add("is-visible");
-      body.classList.add("has-still");
-      unlock();
+      if (!fallbackAttempted && vid.src.endsWith(vWebm) && mp4Ok) {
+        fallbackAttempted = true;
+        vid.src = vMp4;
+        vid.load();
+        if (started) vid.play().catch(onEnd);
+        return;
+      }
+      onEnd();
     });
     }
 
