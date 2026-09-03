@@ -99,9 +99,17 @@ const { title, subtitle } = Astro.props;
     } catch (_e) {}
   };
 
+  // A deliberate browser refresh should feel like entering the site again,
+  // even when this browser has already completed the intro before.
+  const isReload = (() => {
+    const navigation = performance.getEntriesByType?.("navigation")?.[0];
+    return navigation?.type === "reload" || performance.navigation?.type === 1;
+  })();
+
   // Skip the cinematic entirely if already seen: show the still directly,
-  // hide the 山中 button and never lock scroll.
-  if (skipIntro()) {
+  // hide the 山中 button and never lock scroll. A page refresh is an explicit
+  // request to enter again, so it always gets the full opening sequence.
+  if (skipIntro() && !isReload) {
     btn.remove();
     bg.classList.add("has-ending");
     still.classList.add("is-visible");
