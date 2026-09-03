@@ -46,7 +46,7 @@ html.is-locked,body.is-locked{overflow:hidden;height:100svh}
 .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:3.75rem;padding:0 1rem}
 .hero h1{color:#160e20;color:var(--dark-purple);-webkit-text-fill-color:#160e20;letter-spacing:-.03em;text-align:center;margin:0;font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:5.3125rem;font-weight:400;line-height:1.1;max-width:16ch}
 .hero .sub{color:#160e20;color:color-mix(in srgb,var(--dark-purple) 75%,transparent);-webkit-text-fill-color:#160e20;letter-spacing:-.01em;margin:-2.5rem 0 0;font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:1.15rem;line-height:1.6;max-width:34rem;white-space:pre-line}
-.discover-button{appearance:none;background:var(--pastoral);color:var(--dark-purple);cursor:pointer;letter-spacing:.08em;border:0;border-radius:2.25rem;justify-content:center;align-items:center;height:auto;padding:.85rem 2.4rem;font-family:inherit;font-size:1.6rem;font-weight:400;line-height:1.2;text-decoration:none;text-shadow:0 1px 1px color-mix(in srgb,var(--cream) 35%,transparent);transition:background-color .4s cubic-bezier(.16,1.08,.38,.98),color .4s cubic-bezier(.16,1.08,.38,.98),opacity .3s;display:inline-flex}
+.discover-button{appearance:none;background:var(--pastoral);color:var(--dark-purple);cursor:pointer;letter-spacing:.08em;border:0;border-radius:2.25rem;justify-content:center;align-items:center;height:auto;padding:.85rem 2.4rem;font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:1.6rem;font-weight:400;line-height:1.2;text-decoration:none;text-shadow:0 1px 1px color-mix(in srgb,var(--cream) 35%,transparent);transition:background-color .4s cubic-bezier(.16,1.08,.38,.98),color .4s cubic-bezier(.16,1.08,.38,.98),opacity .3s;display:inline-flex}
 .discover-button span{padding-top:1px}
 .discover-button:hover:not(:disabled){background:var(--dark-purple);color:var(--cream)}
 .discover-button:focus-visible{outline-offset:4px;outline:2px solid #000}
@@ -67,7 +67,7 @@ body.has-still .article{
 .post-item{border-bottom:1px dashed color-mix(in srgb,var(--dark-purple) 30%,transparent)}
 .post-item>a{display:block;text-decoration:none;padding:clamp(.85rem,1.5vw,1.4rem) 0}
 .post-row{display:flex;gap:1.5rem;align-items:baseline;justify-content:space-between}
-.post-row h2{letter-spacing:-.04em;line-height:1.12;margin:0;font-family:inherit;font-size:clamp(1.1rem,2vw,1.65rem);font-weight:500}
+.post-row h2{letter-spacing:-.04em;line-height:1.12;margin:0;font-family:inherit;font-size:clamp(1.1rem,2vw,1.65rem);font-weight:400}
 .post-date{font-family:inherit;font-size:.9rem;letter-spacing:.03em;color:color-mix(in srgb,var(--dark-purple) 55%,transparent);white-space:nowrap}
 /* ============ Article list pagination ============ */
 .pager{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:clamp(1.5rem,3vw,2.5rem)}
@@ -84,9 +84,9 @@ a.pager-num:hover{border-color:color-mix(in srgb,var(--dark-purple) 25%,transpar
 .article{background:var(--content-surface);color:var(--dark-purple);padding:clamp(4rem,9vw,7rem) var(--margin) clamp(5rem,11vw,9rem)}
 .article-meta{font-family:inherit;font-size:.95rem;letter-spacing:.04em;color:color-mix(in srgb,var(--dark-purple) 60%,transparent);margin:0 0 1.5rem}
 .preface{font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif}
-.article h1{letter-spacing:-.04em;line-height:1.05;margin:0 0 1.5rem;font-family:inherit;font-size:clamp(2.5rem,5.5vw,4.5rem);font-weight:500}
+.article h1{letter-spacing:-.04em;line-height:1.05;margin:0 0 1.5rem;font-family:inherit;font-size:clamp(2.5rem,5.5vw,4.5rem);font-weight:400}
 .prose{font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.65}
-.prose h2,.prose h3{letter-spacing:-.02em;line-height:1.2;margin:2em 0 .6em;font-family:inherit;font-weight:500}
+.prose h2,.prose h3{letter-spacing:-.02em;line-height:1.2;margin:2em 0 .6em;font-family:inherit;font-weight:400}
 .prose p{margin:0 0 1.4em}
 .prose a{text-decoration:underline;text-decoration-color:var(--light-purple);text-underline-offset:3px}
 .prose blockquote{margin:1.5em 0;padding-left:1.25em;border-left:3px solid var(--light-purple);color:color-mix(in srgb,var(--dark-purple) 80%,transparent)}
