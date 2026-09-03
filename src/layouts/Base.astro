@@ -28,6 +28,19 @@ const pageTitle = title === "本心自昭" ? "本心自昭" : `${title} · 本�
         );
       update();
       window.addEventListener("resize", update);
+
+      // Pagination links target #posts, but that jump should be immediate so
+      // the next page opens on the article list instead of animating through
+      // the Hero scene like a manual scroll.
+      if (window.location.hash === "#posts") {
+        document.documentElement.style.scrollBehavior = "auto";
+        window.addEventListener("load", () => {
+          document.getElementById("posts")?.scrollIntoView({
+            behavior: "auto",
+            block: "start",
+          });
+        }, { once: true });
+      }
     </script>
   </body>
 </html>
