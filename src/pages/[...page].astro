@@ -18,7 +18,12 @@ const subtitle = "荆溪白石出，天寒红叶稀。\n山路元无雨，空翠
 ---
 
 <Base bodyClass={isFirst ? "shoujin" : ""}>
-  {isFirst && <Hero title="本心自昭" subtitle={subtitle} />}
+  {isFirst && (
+    <div class="home-hero-frame">
+      <Hero title="本心自昭" subtitle={subtitle} />
+      <Footer overlay />
+    </div>
+  )}
 
   <main class="sbw-body">
     <PostList posts={page.data} page={page} />
@@ -37,5 +42,4 @@ const subtitle = "荆溪白石出，天寒红叶稀。\n山路元无雨，空翠
     )}
   </main>
 
-  <Footer />
 </Base>

@@ -1,4 +1,9 @@
-<footer class="contact-footer" aria-label="页脚">
+---
+const { overlay = false } = Astro.props;
+const footerClass = overlay ? "contact-footer contact-footer--overlay" : "contact-footer";
+---
+
+<footer class={footerClass} aria-label="页脚">
   <div class="footer-inner">
     <div class="footer-heading">
       <p class="footer-kicker">随手记 · 慢慢写</p>
