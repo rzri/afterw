@@ -12,7 +12,9 @@ const fmt = (d) =>
     .replace(/(\d+)年(\d+)月(\d+)日/, "$1年$2月$3日");
 
 const pages = Array.from({ length: Math.max(page.lastPage, 1) }, (_, i) => i + 1);
-const pageUrl = (n) => (n <= 1 ? "/" : `/${n}/`);
+// Pagination opens at the article list while keeping the Hero above it in the
+// document, so readers can scroll upward whenever they want the opening scene.
+const pageUrl = (n) => (n <= 1 ? "/#posts" : `/${n}/#posts`);
 ---
 
 <section class="list" id="posts">
