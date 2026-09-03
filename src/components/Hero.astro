@@ -54,16 +54,15 @@ const { title, subtitle } = Astro.props;
 
   const avifOk = supports("avif");
 
-  const webmOk = vid.canPlayType && vid.canPlayType("video/webm") !== "";
   const mp4Ok = vid.canPlayType && vid.canPlayType("video/mp4") !== "";
-  const webkitBrowser = /Safari|iPhone|iPad|iPod/.test(navigator.userAgent)
-    && !/Chrome|CriOS|Edg|Android/.test(navigator.userAgent);
 
-  // Safari is most reliable with the H.264 MP4 export. Chromium prefers the
-  // smaller WebM, with MP4 retained as a runtime fallback if decoding fails.
-  const chosen = webkitBrowser
-    ? (mp4Ok ? vMp4 : webmOk ? vWebm : null)
-    : (webmOk ? vWebm : mp4Ok ? vMp4 : null);
+  // Keep the same WebM-first path as the reference site. Safari versions that
+  // support the original animation decode this asset correctly; MP4 remains a
+  // fallback for browsers that do not expose WebM support.
+  // Set WebM directly, matching the reference implementation. Some WebKit
+  // builds report an overly cautious canPlayType result but still decode it.
+  const chosen = vWebm;
+  const alternate = mp4Ok ? vMp4 : null;
   let fallbackAttempted = false;
 
   if (chosen) vid.src = chosen;
@@ -161,9 +160,9 @@ const { title, subtitle } = Astro.props;
     vid.addEventListener("ended", onEnd);
     // safety: if the video errors out, never leave the page locked
     vid.addEventListener("error", () => {
-      if (!fallbackAttempted && vid.src.endsWith(vWebm) && mp4Ok) {
+      if (!fallbackAttempted && alternate && vid.src.endsWith(chosen)) {
         fallbackAttempted = true;
-        vid.src = vMp4;
+        vid.src = alternate;
         vid.load();
         if (started) vid.play().catch(onEnd);
         return;
