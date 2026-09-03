@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
-import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
 import PostList from "../components/PostList.astro";
 
@@ -17,13 +16,8 @@ const isFirst = page.currentPage === 1;
 const subtitle = "荆溪白石出，天寒红叶稀。\n山路元无雨，空翠湿人衣。";
 ---
 
-<Base bodyClass={isFirst ? "shoujin" : ""}>
-  {isFirst && (
-    <div class="home-hero-frame">
-      <Hero title="本心自昭" subtitle={subtitle} />
-      <Footer overlay />
-    </div>
-  )}
+<Base bodyClass="shoujin">
+  <Hero title="本心自昭" subtitle={subtitle} />
 
   <main class="sbw-body">
     <PostList posts={page.data} page={page} />
@@ -41,5 +35,4 @@ const subtitle = "荆溪白石出，天寒红叶稀。\n山路元无雨，空翠
       </section>
     )}
   </main>
-
 </Base>

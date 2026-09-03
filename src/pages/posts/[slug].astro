@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import Footer from "../../components/Footer.astro";
 import Base from "../../layouts/Base.astro";
 
 export async function getStaticPaths() {
@@ -37,6 +36,4 @@ const fmt = (d) =>
       </div>
     </div>
   </article>
-
-  <Footer />
 </Base>
