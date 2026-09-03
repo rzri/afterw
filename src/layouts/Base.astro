@@ -1,8 +1,17 @@
 ---
 import "../styles/global.css";
 
-const { title = "本心自昭", bodyClass = "" } = Astro.props;
+const {
+  title = "本心自昭",
+  bodyClass = "",
+  description: pageDescription,
+  type = "website",
+  publishedTime,
+  updatedTime,
+} = Astro.props;
 const pageTitle = title === "本心自昭" ? "本心自昭" : `${title} · 本心自昭`;
+const description = pageDescription ?? "本心自昭 — 一处记录日常、阅读与思考的个人博客。";
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "https://innatus.cn").href;
 ---
 
 <!doctype html>
@@ -12,8 +21,22 @@ const pageTitle = title === "本心自昭" ? "本心自昭" : `${title} · 本�
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light only" />
     <meta name="generator" content="Astro" />
-    <meta name="description" content="本心自昭 — a personal blog. Dark purple and cream, with a cinematic WebM introduction." />
+    <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="本心自昭" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={new URL("/assets/images/intro-desktop-response.jpg", Astro.site ?? "https://innatus.cn")} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+    {updatedTime && <meta property="article:modified_time" content={updatedTime.toISOString()} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL("/assets/images/intro-desktop-response.jpg", Astro.site ?? "https://innatus.cn")} />
+    <link rel="alternate" type="application/rss+xml" title="本心自昭 RSS" href="/rss.xml" />
     <link rel="preload" href="/assets/fonts/honglei-xingshu.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/denim-ink-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/png" href="/assets/images/icon-128x128.png" />
