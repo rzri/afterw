@@ -75,6 +75,7 @@ const { title, subtitle } = Astro.props;
   let started = false;
   let done = false;
   let unlocked = false;
+  const introStorageKey = "intro_seen_v2";
 
   function unlock() {
     if (unlocked) return;
@@ -87,14 +88,14 @@ const { title, subtitle } = Astro.props;
   // cinematic only plays once ever per browser.
   const skipIntro = () => {
     try {
-      return localStorage.getItem("intro_seen") === "1";
+      return localStorage.getItem(introStorageKey) === "1";
     } catch (_e) {
       return false;
     }
   };
   const markSeen = () => {
     try {
-      localStorage.setItem("intro_seen", "1");
+      localStorage.setItem(introStorageKey, "1");
     } catch (_e) {}
   };
 
