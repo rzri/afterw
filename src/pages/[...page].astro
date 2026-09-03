@@ -12,7 +12,6 @@ export async function getStaticPaths({ paginate }) {
 }
 
 const { page } = Astro.props;
-const isFirst = page.currentPage === 1;
 const subtitle = "荆溪白石出，天寒红叶稀。\n山路元无雨，空翠湿人衣。";
 ---
 
@@ -22,17 +21,15 @@ const subtitle = "荆溪白石出，天寒红叶稀。\n山路元无雨，空翠
   <main class="sbw-body">
     <PostList posts={page.data} page={page} />
 
-    {isFirst && (
-      <section class="list" id="about">
-        <div class="wrap">
-          <h1 class="list-heading">小序</h1>
-          <div class="prose" style="max-width:44rem;white-space:pre-line">
+    <section class="list" id="about">
+      <div class="wrap">
+        <h1 class="list-heading">小序</h1>
+        <div class="prose" style="max-width:44rem;white-space:pre-line">
 春日种瓜，夏夜乘凉，秋晨扫落叶，冬日晒太阳。
 花的开落，云的来去，一日三餐，几页闲书。
 人生足矣。
-      </div>
         </div>
-      </section>
-    )}
+      </div>
+    </section>
   </main>
 </Base>
