@@ -65,9 +65,9 @@ body.has-still .article{
 .post-list{list-style:none;margin:0;padding:0;border-top:1px dashed color-mix(in srgb,var(--dark-purple) 30%,transparent)}
 .post-item{border-bottom:1px dashed color-mix(in srgb,var(--dark-purple) 30%,transparent)}
 .post-item>a{display:block;text-decoration:none;padding:clamp(.85rem,1.5vw,1.4rem) 0}
-.post-row{display:flex;gap:1.5rem;align-items:baseline;justify-content:space-between}
+.post-row{display:flex;gap:1.5rem;align-items:center;justify-content:space-between}
 .post-row h2{letter-spacing:-.04em;line-height:1.12;margin:0;font-family:var(--article-font);font-size:clamp(1.1rem,2vw,1.65rem);font-weight:400}
-.post-date{font-family:var(--article-font);font-size:.9rem;letter-spacing:.03em;color:color-mix(in srgb,var(--dark-purple) 55%,transparent);white-space:nowrap}
+.post-date{font-family:var(--article-font);font-size:.9rem;letter-spacing:.03em;line-height:1.2;color:color-mix(in srgb,var(--dark-purple) 55%,transparent);white-space:nowrap}
 /* ============ Article list pagination ============ */
 .pager{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:clamp(1.5rem,3vw,2.5rem)}
 .pager-link{font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-size:1rem;letter-spacing:.06em;color:var(--dark-purple);text-decoration:none;padding:.4rem 1rem;border:1px solid color-mix(in srgb,var(--dark-purple) 30%,transparent);border-radius:2rem;transition:background-color .3s,color .3s}
