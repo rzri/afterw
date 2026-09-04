@@ -7,14 +7,15 @@ const { title, subtitle } = Astro.props;
     <video data-intro-video muted playsinline preload="auto" webkit-playsinline></video>
   </div>
 
-  <!-- fixed backdrop revealed after the intro: the still frame (avif, with
-       jpg fallback for browsers that don't support AVIF, e.g. old Safari) -->
-  <img
-    class="hero-still"
-    alt=""
-    data-still
-    src="/assets/images/intro-desktop-response.jpg"
-  />
+  <!-- fixed backdrop revealed after the intro. <picture> picks the variant
+       natively: desktop/mobile via media queries, AVIF with a jpg fallback
+       for browsers that can't decode AVIF (e.g. old Safari). -->
+  <picture>
+    <source media="(min-width: 800px)" type="image/avif" srcset="/assets/images/intro-desktop-response.avif" />
+    <source media="(min-width: 800px)" srcset="/assets/images/intro-desktop-response.jpg" />
+    <source type="image/avif" srcset="/assets/images/intro-mobile-response.avif" />
+    <img class="hero-still" alt="" data-still src="/assets/images/intro-mobile-response.jpg" />
+  </picture>
 
   <div class="hero-inner">
     <h1>{title}</h1>
@@ -37,22 +38,6 @@ const { title, subtitle } = Astro.props;
   const base = desktop ? "desktop" : "mobile";
   const vWebm = `/assets/videos/intro-${base}.webm`;
   const vMp4 = `/assets/videos/intro-${base}.mp4`;
-  const avif = `/assets/images/intro-${base}-response.avif`;
-  const jpg = `/assets/images/intro-${base}-response.jpg`;
-
-  // Prefer the still format the browser can actually decode (old Safari has
-  // neither WebM nor AVIF; modern releases support both).
-  const supports = (fmt) => {
-    const img = new Image();
-    const probe =
-      fmt === "avif"
-        ? "AAAAIGZ0eXBhdmlmAAAAAGFtYXZkaWdyZXMwbW9vcnAA"
-        : "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigD//2Q==";
-    img.src = `data:image/${fmt};base64,${probe}`;
-    return img.decode && img.decode().then(() => true).catch(() => false);
-  };
-
-  const avifOk = supports("avif");
 
   const mp4Ok = vid.canPlayType && vid.canPlayType("video/mp4") !== "";
 
@@ -66,11 +51,6 @@ const { title, subtitle } = Astro.props;
   let fallbackAttempted = false;
 
   if (chosen) vid.src = chosen;
-
-  // still image: swap in AVIF only if decodable, else keep the jpg fallback
-  avifOk.then((ok) => {
-    still.src = ok ? avif : jpg;
-  });
 
   let started = false;
   let done = false;
