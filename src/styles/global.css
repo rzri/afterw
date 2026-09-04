@@ -34,6 +34,12 @@ html.is-locked,body.is-locked{overflow:hidden;height:100svh}
 .nav-actions>a:hover:after{transform:scaleX(1)}
 .site-header.light{color:var(--cream)}
 .site-header.light .nav-logo,.site-header.light .nav-actions>a{color:var(--cream)}
+/* header sits above scrolling content; re-enable events on the links only so
+   the rest of the bar never blocks the page */
+.nav-logo,.site-header .nav-actions>a{pointer-events:auto}
+.nav-logo{font-family:hongleiXingshu,"hongleiXingshu Fallback",denimInk,"denimInk Fallback",sans-serif;font-weight:400}
+/* on article pages the fixed header needs a readable backdrop */
+.article .site-header{background:color-mix(in srgb,var(--content-surface) 88%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 /* ============ Hero (WebM intro -> still avif backdrop) ============ */
 .hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;overflow:clip;background:var(--cream);z-index:1}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
@@ -77,6 +83,8 @@ body.has-still .article{
 a.pager-num:hover{border-color:color-mix(in srgb,var(--dark-purple) 25%,transparent)}
 .pager-num.current{background:var(--pastoral);color:var(--dark-purple)}
 .post-excerpt{margin:.35rem 0 0;color:color-mix(in srgb,var(--dark-purple) 75%,transparent);max-width:44rem;font-size:clamp(.85rem,1.1vw,1rem);line-height:1.4}
+/* 404 */
+.notfound{min-height:72svh;display:grid;align-content:center}
 
 /* ============ Article page ============ */
 .art-inner{width:100%;max-width:48rem;margin:0 auto}
