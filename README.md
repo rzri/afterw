@@ -47,16 +47,24 @@ It automatically appears on the homepage list and at `/posts/my-note/`.
 
 ```
 src/
+  consts.ts          # site title/description, posts per page
   content/
     config.ts        # content-collection schema
     posts/           # your Markdown articles
   components/
     Hero.astro       # WebM intro (play on click) -> fixed avif backdrop on end
+    PostList.astro   # paginated article list
   layouts/
-    Base.astro       # base HTML shell
+    Base.astro       # base HTML shell (SEO meta + RSS link)
+  lib/
+    format.ts        # shared date formatting
   pages/
-    index.astro      # homepage: hero + article list + about + footer
+    [...page].astro     # homepage: hero + article list + about (paginated)
+    404.astro           # not-found page
     posts/[slug].astro  # article detail page
+    robots.txt.ts       # robots.txt
+    rss.xml.ts          # RSS 2.0 feed
+    sitemap.xml.ts      # sitemap
   styles/
     global.css       # theme tokens + typography
 public/
