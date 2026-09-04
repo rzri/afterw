@@ -1,16 +1,17 @@
 ---
 import "../styles/global.css";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
 const {
-  title = "本心自昭",
+  title = SITE_TITLE,
   bodyClass = "",
   description: pageDescription,
   type = "website",
   publishedTime,
   updatedTime,
 } = Astro.props;
-const pageTitle = title === "本心自昭" ? "本心自昭" : `${title} · 本心自昭`;
-const description = pageDescription ?? "本心自昭 — 一处记录日常、阅读与思考的个人博客。";
+const pageTitle = title === SITE_TITLE ? SITE_TITLE : `${title} · ${SITE_TITLE}`;
+const description = pageDescription ?? SITE_DESCRIPTION;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "https://innatus.cn").href;
 ---
 
@@ -25,7 +26,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "https://innatus.
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content={type} />
-    <meta property="og:site_name" content="本心自昭" />
+    <meta property="og:site_name" content={SITE_TITLE} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
@@ -36,7 +37,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "https://innatus.
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL("/assets/images/intro-desktop-response.jpg", Astro.site ?? "https://innatus.cn")} />
-    <link rel="alternate" type="application/rss+xml" title="本心自昭 RSS" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title={`${SITE_TITLE} RSS`} href="/rss.xml" />
     <link rel="preload" href="/assets/fonts/honglei-xingshu.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/denim-ink-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/png" href="/assets/images/icon-128x128.png" />

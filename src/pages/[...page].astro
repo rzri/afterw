@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
+import { POSTS_PER_PAGE, SITE_TITLE } from "../consts";
 import Hero from "../components/Hero.astro";
 import PostList from "../components/PostList.astro";
 
@@ -8,7 +9,7 @@ export async function getStaticPaths({ paginate }) {
   const allPosts = (
     await getCollection("posts", ({ data }) => !data.draft)
   ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-  return paginate(allPosts, { pageSize: 6 });
+  return paginate(allPosts, { pageSize: POSTS_PER_PAGE });
 }
 
 const { page } = Astro.props;
@@ -16,7 +17,7 @@ const subtitle = "荆溪白石出，天寒红叶稀。\n山路元无雨，空翠
 ---
 
 <Base bodyClass="shoujin">
-  <Hero title="本心自昭" subtitle={subtitle} />
+  <Hero title={SITE_TITLE} subtitle={subtitle} />
 
   <main class="sbw-body">
     <PostList posts={page.data} page={page} />

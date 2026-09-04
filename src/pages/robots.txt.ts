@@ -2,7 +2,9 @@ import type { APIRoute } from "astro";
 
 export const prerender = true;
 
-export const GET: APIRoute = () =>
-  new Response("User-agent: *\nAllow: /\nSitemap: https://innatus.cn/sitemap.xml\n", {
+export const GET: APIRoute = ({ site }) => {
+  const sitemapUrl = new URL("sitemap.xml", site ?? import.meta.env.SITE);
+  return new Response(`User-agent: *\nAllow: /\nSitemap: ${sitemapUrl.href}\n`, {
     headers: { "Content-Type": "text/plain; charset=utf-8" },
   });
+};

@@ -1,5 +1,6 @@
 import { getCollection } from "astro:content";
 import type { APIRoute } from "astro";
+import { POSTS_PER_PAGE } from "../consts";
 
 export const prerender = true;
 
@@ -10,7 +11,7 @@ export const GET: APIRoute = async ({ site }) => {
   const baseUrl = site ?? new URL("https://innatus.cn");
   const posts = (await getCollection("posts", ({ data }) => !data.draft))
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-  const pageCount = Math.max(1, Math.ceil(posts.length / 6));
+  const pageCount = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
   const urls = [
     ...Array.from({ length: pageCount }, (_, index) => (index === 0 ? "/" : `/${index + 1}/`)),
     ...posts.map((post) => `/posts/${post.slug}/`),

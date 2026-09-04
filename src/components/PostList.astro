@@ -1,15 +1,7 @@
 ---
-const { posts, page, pageSize } = Astro.props;
+import { formatDate } from "../lib/format";
 
-const fmt = (d) =>
-  new Date(d)
-    .toLocaleDateString("zh-CN", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })
-    .replace(/\//g, "年")
-    .replace(/(\d+)年(\d+)月(\d+)日/, "$1年$2月$3日");
+const { posts, page, pageSize } = Astro.props;
 
 const pages = Array.from({ length: Math.max(page.lastPage, 1) }, (_, i) => i + 1);
 // Pagination opens at the article list while keeping the Hero above it in the
@@ -26,7 +18,7 @@ const pageUrl = (n) => (n <= 1 ? "/#posts" : `/${n}/#posts`);
           <a href={`/posts/${p.slug}/`}>
             <div class="post-row">
               <h2>{p.data.title}</h2>
-              <time class="post-date">{fmt(p.data.pubDate)}</time>
+              <time class="post-date">{formatDate(p.data.pubDate)}</time>
             </div>
             {p.data.description && (
               <p class="post-excerpt">{p.data.description}</p>
